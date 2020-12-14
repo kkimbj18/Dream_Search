@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import request, { setUserArticle } from '../libs/request'
+import request from '../libs/request'
 import { useLocation, withRouter } from 'react-router-dom'
 import ArticleS from '../components/ArticleS'
 import CommentList from '../components/CommentList'
@@ -16,7 +16,7 @@ const ArticleSpecific = (props) => {
         async function fetchData() {
             let tmp = await request.getUser(window.sessionStorage.getItem('n_name'));
             setUser(tmp);
-            let temp = await request.getComments(location.state._id);
+            let temp = await request.getComments(article._id);
             setComments(temp);
         }
         fetchData();
