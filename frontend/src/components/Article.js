@@ -20,8 +20,8 @@ const Article = (props) => {
       </Link>
       <p class="post-meta">
         Posted by <Link to="/">{article.author.n_name}</Link> on {moment(article.date).format('YYYY-MM-DD, hh:mm')}
-    <span class="float-r">★({article.rating?article.rating/2:0})</span>
-    <div><i class="s-9">About {article.major}/{article.dream}</i> </div>
+        <span class="float-r">★({article.rating ? article.rating / 2 : 0})</span>
+        <div><i class="s-9">About {article.major}/{article.dream}</i> </div>
       </p>
       <span class="text-warning">
       </span>
