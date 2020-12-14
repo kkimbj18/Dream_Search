@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_DEFAULT = "http://localhost:3030/";
+const API_DEFAULT = "http://http://118.67.133.90:3030/";
 const instance = axios.create({ baseURL : API_DEFAULT });
 
 // Root Page
