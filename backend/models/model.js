@@ -11,11 +11,17 @@ const articleSchema = new Schema({
         type: String,
         required: true,
     },
-    rating: [{ type: Number, ref:'Comment' }],
+    rating: { type: Number },
     date: { type: Date, default: Date.now },
     author: {
-        type: Number, ref:'UserDetails'
+        type: Number, ref: 'UserDetails'
     },
+    major: {
+        type: String, required: true
+    },
+    dream: {
+        type: String, required: true
+    }
 });
 
 const userDetailsSchema = new Schema({
@@ -37,7 +43,8 @@ const userDetailsSchema = new Schema({
         required: true
     },
     birth_m: {
-        type: Number,
+        type: String,
+        required: true
     },
     major: String,
     dream: String,
@@ -45,7 +52,8 @@ const userDetailsSchema = new Schema({
         type: String,
         required: true
     },
-    articles: [{ type: Number, ref:'Article' }],
+    articles: [{ type: Number, ref: 'Article' }],
+    likes: [{ type: Number, ref: 'Article' }],
     salt: {
         type: Number,
     }
@@ -57,15 +65,14 @@ const commentSchema = new Schema({
         required: true
     },
     rating: Number,
-    author: { type: Number, ref:'UserDetails' },
+    author: { type: Number, ref: 'UserDetails' },
     date: { type: Date, default: Date.now },
-    article: {type: Number, ref:'Article'}
+    article: { type: Number, ref: 'Article' }
 });
 
 articleSchema.plugin(mongooseAutoInc.plugin, 'Article');
 userDetailsSchema.plugin(mongooseAutoInc.plugin, 'UserDetails');
 commentSchema.plugin(mongooseAutoInc.plugin, 'Comment');
-
 
 const articleModel = model('Article', articleSchema);
 const userModel = model('UserDetails', userDetailsSchema);
