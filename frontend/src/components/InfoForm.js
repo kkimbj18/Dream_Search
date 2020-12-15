@@ -40,11 +40,9 @@ const InfoForm = (props) => {
     },[])
 
     const onChangeMajor = (e) => {
-        console.log(e);
         setMajor(e);
     }
     const onChangeDream = (e) => {
-        console.log(e);
         setDream(e);
     }
 

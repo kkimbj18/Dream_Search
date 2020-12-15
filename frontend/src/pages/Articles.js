@@ -11,6 +11,9 @@ const Articles = () => {
     const optHandler = (option) => {
         setOpt(option);
     }
+    const filterHandler = (e) => {
+        setOpt(e.value);
+    }
 
     const submit = (option, input) => {
         switch(option)
@@ -44,22 +47,35 @@ const Articles = () => {
     useEffect(()=>{
         async function fetchData() {
             let articleList;
+            console.log(opt);
             switch(opt)
             {
                 case 0:
                     articleList = await request.getArticles();
+                    setList(articleList);
                     break;
                 case 1:
                     articleList = await request.getArticlesByMajor(window.sessionStorage.getItem('major'));
+                    setList(articleList);
                     break;
                 case 2:
                     articleList = await request.getArticlesByDream(window.sessionStorage.getItem('dream'));
+                    setList(articleList);
+                    break;
+                case 10:
+                    setList(list.sort((a,b)=>{
+                        return a.date < b.date ? -1 : a.date > b.date ? 1 : 0
+                    }));
+                    break;
+                case 11:
+                    setList(list.sort((a,b)=>{
+                        return a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0
+                    }))
                     break;
                 default:
                     articleList = await request.getArticles();
+                    setList(articleList);
             }
-            setList(articleList);
-            console.log(articleList);
         }
         fetchData();
     }, [opt])
@@ -72,7 +88,7 @@ const Articles = () => {
 
                 <div class="col-lg-8 col-md-10 mx-auto">
 
-                    <List list={list} />
+                    <List list={list} onHandle={filterHandler}/>
                     <SearchBar onSubmit={submit}/>
 
                 </div>

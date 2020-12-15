@@ -78,6 +78,10 @@ export async function postComment( {article, comment, author} ){
     const result = await instance.post('/article/comment' , {article, comment, author});
     return result.data;
 }
+export async function deleteComment( id ){
+    const result = await instance.delete('/article/comment/'+id);
+    return result.data;
+}
 
 export default {
     getArticles,
@@ -96,5 +100,6 @@ export default {
     unlikeArticle,
     updateUser,
     getComments,
-    postComment
+    postComment,
+    deleteComment
 }

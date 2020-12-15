@@ -122,8 +122,33 @@ router.post('/comment', function (req, res, next) {
       res.status(200).json(comment);
     }
   })
+});
 
-
+// Comment 삭제
+router.delete('/comment/:id', function (req, res, next) {
+  Comment.findOneAndDelete({_id: req.params.id},(err, result)=>{
+    if(err) console.log(err);
+    else {
+      console.log(result);
+      Comment.aggregate([
+        { $match: { 'article': result.article } },
+        {
+          $group:
+          {
+            '_id': null,
+            'rating': { '$avg': '$rating' }
+          }
+        }
+      ], async (err, result2) => {
+        if (err) console.log(err);
+        else {
+          console.log(result2);
+          await Article.findOneAndUpdate({ _id: result.article }, { rating: result2.length>0 ? result2[0].rating : 0 }, { new: true })
+        }
+      })
+      res.status(200).json({success: true});
+    }
+  })
 })
 
 module.exports = router;

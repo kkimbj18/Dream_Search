@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import Pagination from './Pagination'
 import Article from './Article'
 import _ from 'lodash'
+import Select from 'react-select'
 
 const List = (props) => {
     const [articles, setArticles] = useState({
@@ -11,6 +12,11 @@ const List = (props) => {
     });
     const { pageSize, currentPage } = articles;
     const count = props.list.length;
+    const option = [
+        {value:10, label:"날짜 순"},
+        {value:11, label:"평점 순"}
+
+    ]
     const posting = () => {
         if (window.sessionStorage.getItem('n_name')) props.history.push('/article/post');
         else {
@@ -32,6 +38,7 @@ const List = (props) => {
     const pagedArticles = paginate(pageSize, currentPage);
     return (
         <>
+            <Select onChange={props.onHandle} options={option}/>
             {pagedArticles.map(article =>
                 <Article article={article} />
             )}

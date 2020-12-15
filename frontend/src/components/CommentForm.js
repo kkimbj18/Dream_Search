@@ -52,7 +52,7 @@ const CommentForm = (props) => {
             const formData = {
                 article: props.article,
                 comment: comment,
-                author: props.article.author
+                author: props.user
             }
             resetComment();
             console.log(formData);

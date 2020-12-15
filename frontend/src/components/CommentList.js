@@ -1,15 +1,15 @@
 import React from 'react'
 import Comment from './Comment'
 
-const CommentList = ({comments}) => {
+const CommentList = (props) => {
     
     return (
-        comments?
+        props?.comments?.length > 0?
         <>
-              {console.log(comments)}
+              {console.log(props.comments)}
               {
-                  comments.map(comment=>
-                      <Comment comment={comment} />
+                  props.comments.map(comment=>
+                      <Comment comment={comment} onDelete={props.onDelete} />
                   )
               }
               </>

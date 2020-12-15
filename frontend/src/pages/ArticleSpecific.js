@@ -9,15 +9,14 @@ const ArticleSpecific = (props) => {
     const location = useLocation();
     const [article] = useState(location.state);
     const [user, setUser] = useState();
-    const [comments, setComments] = useState();
+    const [comments, setComments] = useState([]);
     const [like, setLike] = useState();
 
     useEffect(() => {
         async function fetchData() {
             let tmp = await request.getUser(window.sessionStorage.getItem('n_name'));
             setUser(tmp);
-            let temp = await request.getComments(article._id);
-            setComments(temp);
+            setComments(await request.getComments(article._id));
         }
         fetchData();
     }, [])
@@ -34,6 +33,13 @@ const ArticleSpecific = (props) => {
 
         window.alert('삭제되었습니다!');
         props.history.push('/');
+    }
+
+    const comment_del = async (id) => {
+        await request.deleteComment(id);
+        eventHandle();
+
+        window.alert('삭제되었습니다!');
     }
 
     const doLike = async () => {
@@ -75,11 +81,11 @@ const ArticleSpecific = (props) => {
                             Comments
                         </div>
                         <div class="card-body">
-                            <CommentList comments={comments} />
+                            <CommentList comments={comments} onDelete={comment_del}/>
                         </div>
                     </div>
 
-                    <CommentForm article={article} onSubmit={request.postComment} onHandle={() => eventHandle()} />
+                    <CommentForm user={user} article={article} onSubmit={request.postComment} onHandle={() => eventHandle()} />
 
                 </div>
             </div>
