@@ -13,8 +13,10 @@
 ### 2. 개발 환경 및 기술
 **IDE**
 - VS Code
+
 **Front-End**
 - React.js
+
 **Back-End**
 - Node.js + Express.js
 - MongoDB + Mongoose
