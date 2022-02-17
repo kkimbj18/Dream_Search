@@ -22,3 +22,5 @@
 - Node.js + Express.js
 - MongoDB + Mongoose
 - Naver Cloud Platform
+
+[2020-2학기_웹시스템설계_보고서_201620912_김민건.docx](https://github.com/kkimbj18/Dream_Search/files/8086852/2020-2._._._._201620912_.docx)
