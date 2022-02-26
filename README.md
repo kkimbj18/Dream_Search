@@ -1,5 +1,9 @@
 # Dream_Search
 
+### 관련 자료
+https://drive.google.com/file/d/1yI0ltfKhheFjQcamqjp5uu7Sw386LZwB/view?usp=sharing
+[2020-2학기_웹시스템설계_보고서_201620912_김민건.docx](https://github.com/kkimbj18/Dream_Search/files/8086852/2020-2._._._._201620912_.docx)
+
 ### 목차
 1. 개요
 2. 개발 환경 및 기술
@@ -23,4 +27,4 @@
 - MongoDB + Mongoose
 - Naver Cloud Platform
 
-[2020-2학기_웹시스템설계_보고서_201620912_김민건.docx](https://github.com/kkimbj18/Dream_Search/files/8086852/2020-2._._._._201620912_.docx)
+
